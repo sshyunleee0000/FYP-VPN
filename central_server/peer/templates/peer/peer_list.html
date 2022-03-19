@@ -1,0 +1,23 @@
+{% extends "peer/base.html" %}
+{% block content %}
+    <article>
+	    <a href="{% url 'peer-create' %}"><button>Apply</button></a>
+    </article>
+    {% for peer in peer_list %}
+        <article>
+            <h3>
+                <a href="{% url 'peer-detail' peer.p_no %}">
+                    {{ peer.p_title }}
+                </a>
+                {% if peer.p_al == 1 %}
+                     --- Allowed / {{peer.member}}
+                {% else %}
+                     --- Not Allowed Yet / {{peer.member}}
+                {% endif %}
+            </h3>
+            <h3 class="{{ peer.date_created|date:'l' }}">
+                {{ peer.date_created|date:'Y-m-d' }}
+            </h3>
+        </article>
+    {% endfor %}
+{% endblock %}

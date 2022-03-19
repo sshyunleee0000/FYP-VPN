@@ -1,0 +1,41 @@
+{% extends "peer/base.html" %}
+    {% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label for="id_m_id">ID:</label>
+            <input id="id_m_id" type="text" name="m_id" maxlength="255">
+        </p>
+        <p>
+            <label for="id_m_pw">PW:</label>
+            <input id="id_m_pw" type="password" name="m_id" maxlength="255">
+        </p>
+    </form>
+    <div id="my-signin2"style="padding-bottom: 10px;"></div>
+    <script>
+        function onSuccess(googleUser) {
+          console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+        }
+        function onFailure(error) {
+          console.log(error);
+        }
+        function renderButton() {
+          gapi.signin2.render('my-signin2', {
+            'scope': 'profile email',
+            'width': 240,
+            'height': 50,
+            'longtitle': true,
+            'theme': 'dark',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+          });
+        }
+    </script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <a href="{% url 'peer-list' %}">
+        <button>Login</button>
+    </a>
+    <a href="{% url 'peer-list' %}">
+        <button>Cancel</button>
+    </a>
+{% endblock %}

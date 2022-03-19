@@ -1,0 +1,19 @@
+
+{% extends "peer/base.html" %}
+{% block content %}
+    <article>
+        <h2>{{ peer.date_created|date:'Y-m-d H:i' }}</h2>
+        <h3>{{ peer.p_title }}</h3>
+        {% if peer.p_al == 1 %}
+            <p>Allowed</p>
+        {% else %}
+            <p>Not Allowed Yet</p>
+        {% endif %}
+    </article>
+    <a href="{% url 'peer-delete' peer.p_no %}">
+        <button>Delete</button>
+    </a>
+    <a href="javascript:window.history.back()">
+        <button>Back</button>
+    </a>
+{% endblock %}

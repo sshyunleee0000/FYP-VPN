@@ -1,0 +1,108 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My VPN</title>
+    <style>
+    * {
+	    box-sizing: border-box;
+        font-family: "Century Gothic", "Georgia";
+    }
+    a {
+	    text-decoration: none;
+        color: #1AAB8A;
+    }
+    a:hover {
+	    opacity: 0.7;
+    }
+    ul {
+	    list-style: none;
+    }
+    article {
+	    border-bottom: 1px solid mediumseagreen;
+    }
+    .messages {
+    	padding: 0;
+    	list-style: none;
+    }
+
+    .message {
+    	width: 100%;
+   	    background: lightblue;
+    	padding: 1rem;
+    	text-align: center;
+    	margin: 1rem 0
+    }
+    input.submit {
+        background: none;
+        border-width: 0;
+        color: inherit;
+        font-size: inherit;
+    }
+    button.submit {
+        float: left;
+        margin-right: 5px;
+    }
+    select {
+        background: white;
+        border: 1px solid #888;
+    }
+    button{
+        background:#1AAB8A;
+        color:#fff;
+        border:none;
+        position:relative;
+        height:45px;
+        font-size:1.2em;
+        padding:0 1em;
+        cursor:pointer;
+        transition:600ms ease all;
+        outline:none;
+    }
+    button:hover{
+        background:#fff;
+        color:#1AAB8A;
+    }
+    button:before,button:after{
+        content:'';
+        position:absolute;
+        top:0;
+        right:0;
+        height:2px;
+        width:0;
+        background: #1AAB8A;
+        transition:400ms ease all;
+    }
+    button:after{
+        right:inherit;
+        top:inherit;
+        left:0;
+        bottom:0;
+    }
+    button:hover:before,button:hover:after{
+        width:100%;
+        transition:600ms ease all;
+    }
+    </style>
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+</head>
+
+<body>
+    <a href="{% url 'login' %}" style="float: right;">
+        <button>Login</button>
+    </a>
+    <h1><a href="/">My VPN</a></h1>
+    {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+        <li class="message">
+            {{ message }}
+        </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% block content %}{% endblock %}
+</body>
+</html>

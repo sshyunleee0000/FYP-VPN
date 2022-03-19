@@ -1,0 +1,11 @@
+{% extends "peer/base.html" %}
+    {% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="submit"><input type="submit" class="submit" value="Save"></button>
+    </form>
+    <a href="{% url 'peer-list' %}">
+        <button>Cancel</button>
+    </a>
+{% endblock %}
